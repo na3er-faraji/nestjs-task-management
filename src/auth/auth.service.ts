@@ -20,12 +20,6 @@ export class AuthService {
 
     const user = await this.usersRepository.findOneBy({ username });
 
-    console.log('user=', user);
-    console.log('password=', password);
-    console.log('user.password=', user.password);
-
-    console.log('check=', await bcrypt.compare(user.password, password));
-
     if (user && (await bcrypt.compare(password, user.password))) {
       return 'success';
     } else {
